@@ -1,3 +1,7 @@
+/*
+  This code shows how to use iterator on "string" C++ class.
+*/
+
 #include<string>
 #include<iostream>
 #include<stack>
