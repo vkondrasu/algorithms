@@ -12,9 +12,6 @@
 #define MIN(a,b) (a<b?a:b)
 
 using namespace std;
-void convertToBinary(int* array, int small)
-{
-}
 
 char *decimal_to_binary(int n)
 {
@@ -54,32 +51,28 @@ int multiply(int a, int b)
   int small = MIN(a,b);
   int big = MAX(a,b);
   int arSize = log(small)/log(2) + 1;
-  cout<<"arSize "<< arSize<<endl;
   int *array = (int*)malloc(sizeof(int)*arSize);
   memset(array, 0, sizeof(int)*arSize);
   int *sumarray = (int*)malloc(sizeof(int)*arSize);
   memset(sumarray, 0, sizeof(int)*arSize);
   char* binaryArray = decimal_to_binary(small);
-  cout<<"Binary array: "<<binaryArray<<endl;
   sumarray[0] = big;
   int prev = big;
   for(int i= 1; i<arSize; i++)
   {
     sumarray[i] = prev + prev;
-    cout<<i<<" "<<sumarray[i]<<endl;
     prev = sumarray[i];
   }
   int result = 0;
   for(int i = strlen(binaryArray) -1; i >=  (strlen(binaryArray) - arSize); i--)
   {
-    cout<<i<< " " <<binaryArray[i]<<endl;
     if(binaryArray[i] == '1'){
-      result += sumarray[strlen(binaryArray) - i]; cout<<"Running sum: "<<result<<endl;}
+      result += sumarray[strlen(binaryArray) - i-1]; }
   }
   return result;
 }
-int main()
+int main(int argc, char* argv[])
 {
-  cout<<multiply(123, 56)<<endl;
+  cout<<multiply(atoi(argv[1]), atoi(argv[2]))<<endl;
   return 0;
 }
