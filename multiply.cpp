@@ -1,3 +1,8 @@
+/*
+   Code to do multiplication of two integers, without using the "*" operator.
+   TO-DO: Is there any solution that is optimal than the one we implemented here? If so, code that.
+*/
+
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
