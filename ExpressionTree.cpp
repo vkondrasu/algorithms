@@ -1,3 +1,8 @@
+/*
+  This file contains the code for creating an expression tree from the given string expression.
+  TO-DO: presently we have to insert paranthesis around the expression before passing the string to parse() method,
+         write a method that encloses the expression in paranthesis before passing it to parse().
+*/
 #include <iostream>
 #include <string.h>
 #include <stack>
