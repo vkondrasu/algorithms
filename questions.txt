@@ -1,0 +1,11 @@
+Here are the three problems that i have encountered today.
+
+1. you get an array of appointments like {{3,5},{1,2},{2,7},{6,8}}
+  Our job is to find out all the conflicting schedules
+  here in the above case {2,7} conflits with {3,5} and {6,8}.
+  
+2.  Given a NxN matrix (maze) where all the elemnts are characters 1=wall, 0=path, m=mouse and e=exit.
+  Find the path from m to e.
+  
+3. Given a state diagram, that represents the events of a video player. Implement this state diagram using appropriate
+  Datastructure.
