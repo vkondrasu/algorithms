@@ -1,3 +1,7 @@
+/*
+  Method to insert an element into a tree and to check if the tree is complete.
+  TO-DO: Methods and the TreeNode structure are written as templates, improve it to work with all kind of 'types'.
+*/
 #include <iostream>
 
 using namespace std;
