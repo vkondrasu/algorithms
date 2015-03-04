@@ -9,3 +9,10 @@ Here are the three problems that i have encountered today.
   
 3. Given a state diagram, that represents the events of a video player. Implement this state diagram using appropriate
   Datastructure.
+
+	
+	finding number of 1 bits in a binary number
+	
+	for example: 1011 has three 1's in it. 
+	
+	implemented in number_of_ones.cpp using an algorithm of Wegner (1960) that repeatedly finds and clears the lowest-order nonzero bit.
