@@ -40,6 +40,8 @@ class LinkedList
 		ListNode<T>* insertNode(T value);
 		ListNode<T>* searchNode(T value);
 		ListNode<T>* reverseList();
+		void traverseList();
+		void traverseListReverse();
 		bool deleteNode(T value);
 		int getCount(){ return count; }
 };
