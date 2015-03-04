@@ -165,6 +165,86 @@ bool LinkedList<T>::deleteNode(T value)
 
 	return false;
 }
+
+/*
+	You start at the head node and continue till you reach a node that is NULL
+	There are two cases:
+	1. node = ∅, we have reached end of the list
+	2. Still we are in the list, yield the element and update node pointer to node->next
+
+	Algorithm traverseList()
+		pre: We will start at the head of the list
+		post: The items in the list have been traversed
+
+		n <- head
+
+		while(n != ∅)
+			yield n->key
+			n <- n->next
+		end while
+	end traverseList 
+*/
+template <typename T>
+void LinkedList<T>::traverseList()
+{
+	ListNode<T>* node = head;
+
+	while(node != NULL)
+	{
+		cout<<node->key<< " ";
+		node = node->next;
+	}
+
+	cout<<endl;
+
+	return;
+}
+
+/*
+	Reverse traversal of the node is similar to the forward traversal, but here we need a pointer to the predecessor of the node.
+
+	Algorithm traverseListReverse()
+		pre: get pointers to head and tails of the same list
+		post: the list nodes have been traversed in the reverse order
+
+		if tail != ∅
+			curr <- tail
+			while curr != head
+				prev <- head
+
+				while prev.next != curr
+					prev <- prev.next
+				end while
+				yield curr.key
+			end while
+			yield curr.key
+		end if 
+	end traverseListReverse
+*/
+
+template <typename T>
+void LinkedList<T>::traverseListReverse()
+{
+	if(tail != NULL)
+	{
+		ListNode<T> *curr, *prev;
+    curr = tail;
+		while (curr != head)
+		{
+			prev = head;
+
+			while(prev->next != curr)
+			{
+				prev = prev->next;
+			}
+      cout<<curr->key<<" ";
+			curr = prev;
+		}
+		cout<<curr->key<<endl;
+	}
+}
+
+
 //driver function
 
 int main()
@@ -188,5 +268,8 @@ int main()
   cout<<list.deleteNode(50)<<endl;
   cout<<list.deleteNode(23)<<endl;
 	cout<<list.getCount()<<endl;
+	cout<<"***** Traverse ******"<<endl;
+	list.traverseList();
+	list.traverseListReverse();
 	return 0;
 }
