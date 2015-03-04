@@ -16,9 +16,10 @@ struct ListNode
 template <typename T>
 class LinkedList
 {
+    int count;
 	public:
 		ListNode<T> *head, *tail;
-		LinkedList<T>()
+		LinkedList<T>():count(0)
 		{
 			head=tail=NULL;		
 		}
@@ -37,6 +38,10 @@ class LinkedList
 		}
 
 		ListNode<T>* insertNode(T value);
+		ListNode<T>* searchNode(T value);
+		ListNode<T>* reverseList();
+		bool deleteNode(T value);
+		int getCount(){ return count; }
 };
 
 
