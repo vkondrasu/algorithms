@@ -1,0 +1,145 @@
+#include "BST.h"
+
+#include <iostream>
+
+using namespace std;
+
+/*
+	Insertion is O(lg n) operation provided that tree is moderately balanced.
+
+	Algorithm Insert(value)
+		pre: value is the value to be inserted into the tree
+		post: value has been palced in the tree
+
+		if root = ∅
+			root <- node(value)
+    else
+			InsertNode(root, value)
+		end if
+	end Insert
+
+	Algorithm InsertNode(current, value)
+		pre: current is the root of the subtree in which the 'value' to be inserted.
+		post: value has been inserted into the tree.
+
+		if value < current.value
+			if cureent.left = ∅
+				current.left <- node(value)
+			else
+				InsertNode(current.left, value)
+			end if
+		else
+			if current.right = ∅
+				current.right <- node(value)
+			else
+				InsertNode(current.right, value)
+			end if
+		end if
+	end InsertNode
+	
+*/
+template <typename T>
+TreeNode<T>* BST<T>::Insert(T value)
+{
+	if(root == NULL)
+	{
+		root = newNode(value);
+		++count;
+		return root;
+	}
+	else
+	{
+		return InsertNode(root, value);
+	}
+}
+
+template <typename T>
+TreeNode<T>* BST<T>::InsertNode(TreeNode<T>* current, T value)
+{
+	if(value < current->key)
+	{
+		if(current->left == NULL)
+		{
+			current->left = newNode(value);
+			++count;
+			return current->left;
+		}
+		else
+			return InsertNode(current->left, value);
+	}
+	else
+	{
+		if(current->right == NULL)
+		{
+			current->right = newNode(value);
+			++count;
+			return current->right;
+		}
+		else
+			return InsertNode(current->right, value);
+	}
+
+	return current;
+}
+
+/*
+	There are four cases to consider.
+
+	1. root is ∅, in which case the value doesn't exist in the tree.
+	2. value = root.value, value is found the tree.
+	3. value < root.value, The search will continue in the left subtree of the root.
+	4. value > root.value, The search will continue in the right subtree of the root.
+
+	Algorithm Contains(value)
+		return Search(root, value)
+	end Contains
+
+	Algorithm Search(root, value)
+		if root = ∅
+			return false
+		end if
+		if value == root.value
+			return true
+		else if value < root.value
+			return Search(root.left, value)
+		else if value > root.value
+			return Serach(root.right, value)
+		end if
+	end Search
+*/
+template <typename T>
+bool BST<T>::Contains(T value)
+{
+	return Search(root, value);
+}
+
+template <typename T>
+bool BST<T>::Search(TreeNode<T>* current, T value)
+{
+	if(current == NULL)
+		return false;
+
+	if(value == current->key)
+		return true;
+	else if(value < current->key)
+		return Search(current->left, value);
+	else
+		return Search(current->right, value);
+}
+
+int main()
+{
+	BST<int> tree;
+	tree.Insert(1);
+	tree.Insert(119);
+	tree.Insert(12);
+	tree.Insert(23);
+	tree.Insert(43);
+	tree.Insert(87);
+
+	cout<<tree.getCount()<<endl;
+
+	cout<<tree.Contains(87)<<endl;
+	cout<<tree.Contains(8)<<endl;
+	return 0;
+}

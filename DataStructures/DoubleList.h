@@ -1,0 +1,47 @@
+#ifndef Double_List
+#define Double_List
+#endif
+
+#include <iostream>
+
+template <typename T>
+struct Node
+{
+	T key;
+	Node<T> *prev, *next;
+};
+
+template <typename T>
+class DoubleList
+{
+	private:
+		Node<T> *head, *tail;
+		int count;
+	public:
+
+		DoubleList<T>():head(NULL),tail(NULL),count(0)
+		{
+		}
+
+		~DoubleList<T>()
+		{
+		}
+
+		Node<T>* newNode(T value)
+		{
+			Node<T>* temp = new Node<T>;
+			temp->key = value;
+			temp->prev = temp->next = NULL;
+
+			return temp;
+		}
+
+		int getCount()
+		{
+			return count;
+		}
+
+		Node<T>* Add(T value);
+		bool Remove(T value);
+		void TraverseReverse();
+};

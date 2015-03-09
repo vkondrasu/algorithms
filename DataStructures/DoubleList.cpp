@@ -1,0 +1,194 @@
+#include "DoubleList.h"
+
+#include <iostream>
+
+using namespace std;
+
+
+/*
+	Algorithm Add(value)
+		pre: value is the value to be added to the list
+		post: value will be added to the end of the list (i.e, after tail)
+
+		n <- node(value)
+
+		if head = ∅
+			head <- n
+			tail <- n
+		else
+			n.previous <- tail
+			tail.next <- n
+			tail <- n
+		end if
+	end Add
+*/
+template <typename T>
+Node<T>* DoubleList<T>::Add(T value)
+{
+	Node<T>* node = newNode(value);
+
+	if(head == NULL)
+	{
+		head = tail = node;
+	}
+	else
+	{
+		tail->next = node;
+		node->prev = tail;
+		tail = node;
+	}
+
+	++count;
+	return node;
+}
+
+/*
+	Removing a node from the double linked list is same as it with single linked list.
+	There are 6 cases.
+	1. Empty list
+	2. List has only one element
+	3. Removing Head node
+	4. Removing Tail element
+	5. Removing an element at the middle of the list
+	6. List doesn't have the element to be removed
+
+	Algorithm Remove(T value)
+		pre: value is the value to be removed from the list
+		post: value will be removed from the list
+
+		if head = ∅
+			return false
+		end if
+
+		if head.value = value
+			if head = tail
+				head <- ∅
+				tail <- ∅
+			else
+				head <- head.next
+				head.prev <- ∅
+			end if
+			
+			return true
+		end if
+
+		n <- head.next
+
+		while n.value != value
+			n <- n.next
+		end while
+
+		if n = tail
+			tail <- n.prev
+			tail.next <- ∅
+		else
+			n.prev.next <- n.next
+			n.next.prev <- n.prev
+    retun true
+    end if
+	end Remove
+*/
+template <typename T>
+bool DoubleList<T>::Remove(T value)
+{
+	if(head == NULL)
+		return false;
+	--count;
+	if(head->key == value)
+	{
+		if(head == tail)
+		{
+			head = tail = NULL;
+		}
+		else
+		{
+			head = head->next;
+			head->prev = NULL;
+		}
+		
+		return true;
+	}
+
+	Node<T>* node = head->next;
+
+	while(node->key != value)
+		node = node->next;
+
+	if(node == tail)
+	{
+		tail = tail->prev;
+		tail->next = NULL;
+
+		return true;
+	}
+	else
+	{
+		node->prev->next = node->next;
+		node->next->prev = node->prev;
+
+		return true;
+	}
+
+	++count;
+	return false;
+}
+
+/*
+	Traversing in reverse direction is straight forward with Double linked list.
+	We will start at the tail elememt and will move in reverse direction using the prev pointer
+
+	Algorithm TraverseReverse()
+		pre: start at the tail and move in reverse direction
+		post: The list has been traversed in the reverse direction
+
+		if tail = ∅
+			return flase
+		end if
+
+		node <- tail
+
+		while node != ∅
+			yield node.value
+			node <- node.prev
+		end while
+
+	end TraverseReverse
+*/
+
+template <typename T>
+void DoubleList<T>::TraverseReverse()
+{
+	if(tail== NULL)
+		return;
+
+	Node<T>* node = tail;
+
+	while(node != NULL)
+	{
+		cout<<node->key<<" ";
+		node = node->prev;
+	}
+
+	cout<<endl;
+}
+
+
+int main()
+{
+	DoubleList<int> list;
+	list.Add(1);
+	list.Add(2);
+	list.Add(3);
+	list.Add(4);
+	list.Add(5);
+
+	cout<<list.getCount()<<endl;
+
+	list.Remove(4);
+	list.Remove(1);
+
+	cout<<list.getCount()<<endl;
+
+	list.TraverseReverse();
+	return 0;
+}
