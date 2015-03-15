@@ -86,7 +86,7 @@ ListNode<T>* LinkedList<T>::searchNode(T value)
 					flase, else.
 
 		if head = NULL
-			//case 1
+			//case 1: list is empty
 			return flase
     end if
     
@@ -94,11 +94,11 @@ ListNode<T>* LinkedList<T>::searchNode(T value)
 
     if(n.key = value)
 			if(head = tail)
-				//case 2
+				//case 2: List has only one element
 				head <- NULL
 				tail <- NULL
 			else
-				//case 3
+				//case 3: Element to be removed is the Head element
 				head <- head.next
 			end if
 		
@@ -111,18 +111,19 @@ ListNode<T>* LinkedList<T>::searchNode(T value)
 
 		if(n.next != NULL)
 			if(n.next = tail)
-				//case 5
+				//case 4: Element to be removed is the tail element
 				tail <- n
 				n.next <- NULL
 			else
-				//case 6
+				//case 5: Element to be removed is somewhere in the middle of the list
 				n.next <- n.next.next
 			end if
 
 			return true
 		end if
 
-		return false
+	//case6: Element Doesn't exist in the list		
+	return false
 	end deleteNode
 */
 template <typename T>
@@ -170,7 +171,7 @@ bool LinkedList<T>::deleteNode(T value)
 	You start at the head node and continue till you reach a node that is NULL
 	There are two cases:
 	1. node = ∅, we have reached end of the list
-	2. Still we are in the list, yield the element and update node pointer to node->next
+	2. We are in the list, yield the element and update node pointer to node->next
 
 	Algorithm traverseList()
 		pre: We will start at the head of the list
@@ -179,8 +180,8 @@ bool LinkedList<T>::deleteNode(T value)
 		n <- head
 
 		while(n != ∅)
-			yield n->key
-			n <- n->next
+			yield n.key
+			n <- n.next
 		end while
 	end traverseList 
 */
@@ -216,6 +217,7 @@ void LinkedList<T>::traverseList()
 					prev <- prev.next
 				end while
 				yield curr.key
+				curr = prev
 			end while
 			yield curr.key
 		end if 
