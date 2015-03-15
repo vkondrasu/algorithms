@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 	printList(list1);
 	push(&list2, 8);
 	push(&list2, 4);
-//	push(&list2, 2);
+	push(&list2, 2);
 	printList(list2);
 	result = addTwoLists(list1, list2);
 
