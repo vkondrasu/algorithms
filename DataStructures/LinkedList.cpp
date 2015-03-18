@@ -246,13 +246,58 @@ void LinkedList<T>::traverseListReverse()
 	}
 }
 
+template <typename T>
+void LinkedList<T>::insertEndElementsBetween()
+{
+	if(head == NULL)
+		return;
 
+	ListNode<T> *startNode = head;
+
+	if(startNode->next == NULL)
+		return;
+
+	ListNode<T> *nextNode = startNode->next;
+
+	if(nextNode->next == NULL)
+		return;
+
+	ListNode<T> *prevEnd = nextNode;
+
+	while(nextNode != NULL && nextNode->next != NULL)
+	{
+		while(prevEnd->next->next != NULL){ prevEnd = prevEnd->next; }
+
+		startNode->next = prevEnd->next;
+		prevEnd->next->next = nextNode;
+		prevEnd->next = NULL;
+		startNode = nextNode;
+		nextNode = nextNode->next;
+		prevEnd = nextNode;
+	}
+
+	return;
+
+}
 //driver function
 
 int main()
 {
 	LinkedList<int> list;
-	cout<<list.insertNode(1)<<endl;
+	list.insertNode(1);
+	list.insertNode(2);
+	list.insertNode(3);
+	list.insertNode(4);
+	list.insertNode(5);
+	list.insertNode(6);
+	list.insertNode(7);
+	list.insertNode(8);
+	list.insertNode(9);
+	list.insertNode(10);
+	list.insertNode(11);
+	list.insertEndElementsBetween();
+	list.traverseList();
+	/*cout<<list.insertNode(1)<<endl;
 	cout<<list.head<<" "<<list.tail<<endl;
 	cout<<list.insertNode(45)<<endl;
 	cout<<list.head<<" "<<list.tail<<endl;
@@ -272,6 +317,6 @@ int main()
 	cout<<list.getCount()<<endl;
 	cout<<"***** Traverse ******"<<endl;
 	list.traverseList();
-	list.traverseListReverse();
+	list.traverseListReverse();*/
 	return 0;
 }

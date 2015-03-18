@@ -44,6 +44,7 @@ class LinkedList
 		void traverseListReverse();
 		bool deleteNode(T value);
 		int getCount(){ return count; }
+		void insertEndElementsBetween();
 };
 
 
