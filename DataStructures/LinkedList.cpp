@@ -279,6 +279,29 @@ void LinkedList<T>::insertEndElementsBetween()
 	return;
 
 }
+
+
+template <typename T>
+void LinkedList<T>::reverse()
+{
+	ListNode<T> *temp = NULL;
+	
+	ListNode<T> *node = head;
+	ListNode<T> *next = NULL;
+	
+	while(node != NULL)
+	{
+		next = node->next;
+		
+		node->next = temp;
+		temp = node;
+		
+		node = next;
+	}
+	
+	head = temp;
+	
+}
 //driver function
 
 int main()
