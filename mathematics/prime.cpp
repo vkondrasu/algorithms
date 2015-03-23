@@ -76,6 +76,42 @@ void getPrimeNumbers(int limit, unsigned long long int &count)
 	printf("\n");
 }
 
+void getPrimeNumbers1(int limit, unsigned long long int &count)
+{
+	bool *primes = new bool[limit+1];
+	/*FOR(i,0,limit+1)
+		primes[i] = true;*/
+
+	memset(primes, 1, sizeof(bool) * (limit+1));
+
+	int m = sqrt(limit);
+
+	FORI(i,2,limit+1,2)
+	{
+		primes[i] = false;
+	}
+
+	primes[0] = primes[1] = false;
+	primes[2] = true;
+
+	FORI(i,3,m+1,2)
+	{
+		++count;
+		if(primes[i])
+		{
+			FORI(k,i*i,limit+1,2*i)
+			{
+				++count;
+				primes[k] = false;
+			}
+		}
+	}
+
+	print(primes, limit+1);
+
+	printf("\n");
+}
+
 int main(int argc, char* argv[])
 {
 	int num;
